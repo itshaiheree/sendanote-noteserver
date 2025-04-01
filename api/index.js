@@ -29,13 +29,14 @@ app.get("/api", function(req, res){
 
 // validate the ID
 function isIdValid(id) {
-  const listId = fs.readdir(path.join(__dirname, '../notes'), (err, files) => return files)
+  fs.readdir(path.join(__dirname, '../notes'), (err, files) => {
   
-  if (listId.include(id)){
+  if (files.include(id)){
     return true
   } else {
     return false
   }
+  })
 }
 
 // notes get
