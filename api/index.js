@@ -44,7 +44,7 @@ app.get("/api/note/get", function(req, res) {
   if (!id) { res.send("woi, mana id nya kocak") }
 
   if (isIdValid(`${id}`)){
-  const noteData = fs.readFileSync(`${path.join(__dirname, '../notes')}/${id}.json`);
+  const noteData = fs.readFileSync(`${path.join(__dirname, '../notes')}/${id}.json`, 'utf8');
  
   res.json({ status: "success", data: noteData })
     
