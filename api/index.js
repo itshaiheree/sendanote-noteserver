@@ -16,7 +16,7 @@ function delay(time) {
   return new Promise(resolve => setTimeout(resolve, time));
 }
 
-delay(1000).then(() => location.replace("https://sendanote.mhai.my.id"));
+delay(3000).then(() => location.replace("https://sendanote.mhai.my.id"));
 </script>
   `)
 });
@@ -189,10 +189,17 @@ if (/Mobi|Android/i.test(userAgent)) {
 
 //  Response 404 Page
 app.use(function(req, res, next){
-  if (req.accepts('html')) {
-res.sendFile(path.join(__dirname, '../public', '404.html'));
-    return;
-  }
+  res.send(`
+  <!DOCTYPE html>
+  You will be redirect to Send a Note Webpage in 3 seconds. Or, you can <a href="https://sendanote.mhai.my.id">click here</a>
+  <script>
+function delay(time) {
+  return new Promise(resolve => setTimeout(resolve, time));
+}
+
+delay(3000).then(() => location.replace("https://sendanote.mhai.my.id"));
+</script>
+  `)
 });
 
 
