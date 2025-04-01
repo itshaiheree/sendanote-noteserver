@@ -29,11 +29,10 @@ app.get("/api", function(req, res){
 
 // validate the ID
 function isIdValid(id) {
-  fs.stat(`${path.join(__dirname, '../notes')}/${id}.json`, (err, stats) => {
-  if (err) {
-    return false
-  } else {
+  if (fs.existsSync(`${path.join(__dirname, '../notes')}/${id}.json`)) {
     return true
+  } else {
+    return false
   }
 });
 }
