@@ -201,7 +201,6 @@ app.use(
     response.set('X-Frame-Options', 'deny');
     next();
   },
-  express.static('public')
 );
 
 // listen for requests :)
