@@ -34,8 +34,8 @@ function isIdValid(id) {
   } else {
     return false
   }
-});
-}
+};
+
 
 // notes get
 app.get("/api/note/get", function(req, res) {
