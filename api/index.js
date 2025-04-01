@@ -57,7 +57,6 @@ app.get("/api/note/get", function(req, res) {
     
   } else {
    res.json({ status: "failed", msg: "The note you are looking for cannot be found" })
-  })
   }
 })
 
