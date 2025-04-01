@@ -57,7 +57,9 @@ app.get("/api/note/get", function(req, res) {
   res.json({ status: "success", data: `${noteData}` })
     
   } else {
-   res.json({status: "invalid", msg: "The note you are looking for cannot be found!"})
+   fs.readdir(path.join(__dirname, '../notes'), (err, files) => {
+  res.send(files)
+  })
   }
 })
 
