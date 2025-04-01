@@ -29,7 +29,7 @@ app.get("/api", function(req, res){
 
 // validate the ID
 function isIdValid(id) {
-  fs.stat(path.join(__dirname, '../notes'), (err, stats) => {
+  fs.stat(`${path.join(__dirname, '../notes')}/${id}.json`, (err, stats) => {
   if (err) {
     return false
   } else {
@@ -44,15 +44,9 @@ app.get("/api/note/get", function(req, res) {
 
   if (!id) { res.send("woi, mana id nya kocak") }
 
-  if (isIdValid(`${id}`) === true){
+  if (isIdValid(`${id}`)){
   const noteData = fs.readFileSync(`${path.join(__dirname, '../notes')}/${id}.json`);
  
-  const senderName = "Yanto";
-  const senderTarget = "Yanti";
-  const senderMsg = "bijiq";
-  const senderSongVisibility = "inline";
-  const senderSong = "https://open.spotify.com/intl-id/track/0iKhHZMZfdaDmdlxF7jS2y";
-
   res.json({ status: "success", data: `${noteData}` })
     
   } else {
