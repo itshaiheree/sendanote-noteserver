@@ -40,7 +40,7 @@ function isIdValid(id) {
 }
 
 // notes get
-app.get("/api/note/get, function(req, res) {
+app.get("/api/note/get", function(req, res) {
   const id = req.query.id
 
   if (!id) { res.send("woi, mana id nya kocak") }
