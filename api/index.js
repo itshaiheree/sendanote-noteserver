@@ -2,6 +2,7 @@ var express = require("express");
 const fetch = require('node-fetch');
 var app = express();
 const path = require("path");
+const fs = require('node:fs');
 
 // we've started you off with Express,
 // but feel free to use whatever libs or frameworks you'd like through `package.json`.
@@ -26,8 +27,41 @@ app.get("/api", function(req, res){
   res.json({ status: "online" })
 })
 
-// notes render
-app.get("/api/", function(req, res) {
+// validate the ID
+function isIdValid(id) {
+  const listId = fs.readdir(path.join(__dirname, '../notes'), (err, files) => return files)
+  
+  if (listId.include(id)){
+    return true
+  } else {
+    return false
+  }
+}
+
+// notes get
+app.get("/api/note/get, function(req, res) {
+  const id = req.query.id
+
+  if (!id) { res.send("woi, mana id nya kocak") }
+
+  if (isIdValid(`${id}`) === true){
+  const noteData = fs.readFileSync(`${path.join(__dirname, '../notes')}/${id}.json`);
+ 
+  const senderName = "Yanto";
+  const senderTarget = "Yanti";
+  const senderMsg = "bijiq";
+  const senderSongVisibility = "inline";
+  const senderSong = "https://open.spotify.com/intl-id/track/0iKhHZMZfdaDmdlxF7jS2y";
+
+  res.json({ status: "success", data: `${noteData}` })
+    
+  } else {
+   res.json({status: "invalid", msg: "The note you are looking for cannot be found!"
+  }
+})
+
+// notes new
+app.get("/kentut/", function(req, res) {
   const senderName = "Yanto";
   const senderTarget = "Yanti";
   const senderMsg = "bijiq";
