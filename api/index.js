@@ -42,11 +42,13 @@ app.get("/api/note/get", function(req, res) {
   const id = req.query.id
 
   if (!id) { res.send("woi, mana id nya kocak") }
-
+  
   if (isIdValid(`${id}`)){
-  const noteData = fs.readFileSync(`${path.join(__dirname, '../notes')}/${id}.json`, 'utf8');
- 
-  res.send(`${JSON.stringify('{ "status": "success", "data": ${noteData}}', null, 2)}`)
+  const noteData = JSON.stringify(fs.readFileSync(`${path.join(__dirname, '../notes')}/${id}.json`, 'utf8'), null, 2);
+  
+  const note = JSON.stringify(`{ "status": "success", "data": ${noteData}}`, null, 2)
+    
+  res.json(note)
     
   } else {
    res.json({ status: "failed", msg: "The note you are looking for cannot be found" })
