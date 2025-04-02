@@ -46,7 +46,8 @@ app.get("/api/note/get", function(req, res) {
   if (isIdValid(`${id}`)){
   const noteData = JSON.stringify(fs.readFileSync(`${path.join(__dirname, '../notes')}/${id}.json`, 'utf8'), null, 2);
   
-  const note = `{ "status": "success", "data": ${noteData}}`, null, 2)`    
+  const note = `{ "status": "success", "data": ${noteData}}`  
+  
   res.json(note)
     
   } else {
